@@ -1,0 +1,48 @@
+name: Daily Stock Scraper
+
+on:
+  schedule:
+    # 每天 UTC 10:00 (北京时间 18:00) 运行
+    - cron: '0 */2 * * *'
+  workflow_dispatch: # 允许手动点击运行
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # 需要写权限来创建 Release
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run Stock Spider
+        run: |
+          python stock_spider_single.py
+
+      - name: Generate Release Tag
+        id: tag
+        run: |
+          echo "date=$(date +'%Y.%m.%d')" >> $GITHUB_OUTPUT
+
+      - name: Create Release and Upload Asset
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.tag.outputs.date }}
+          name: Stock Data ${{ steps.tag.outputs.date }}
+          body: |
+            Automatic stock data generation.
+            Date: ${{ steps.tag.outputs.date }}
+          files: |
+            *.xlsx
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
