@@ -1,0 +1,65 @@
+from datetime import datetime
+
+start_stock_code=1
+end_stock_code=4000
+read_last_code=1
+file_path = "./"+str(datetime.now().strftime("%Y-%m-%d_%H%M%S"))+".xlsx"  # 请指定文件路径
+sleep_time=0
+
+data = {
+"股票名称": None,
+"股票代码": None,
+"今开": None,
+"最高价": None,
+"52周最高": None,
+"成交量": None,
+"外盘": None,
+"昨收": None,
+"最低价": None,
+"52周最低": None,
+"成交额": None,
+"内盘": None,
+"总股本": None,
+"港股本": None,
+"市净率": None,
+"每股收益": None,
+"股息率": None,
+"总市值": None,
+"港市值": None,
+"市盈率": None,
+"每股净资产": None,
+"换手率": None,
+"基本每股收益(元)": None,
+"稀释每股收益(元)": None,
+"TTM每股收益(元)": None,
+"每股净资产(元)": None,
+"每股经营现金流(元)": None,
+"每股营业收入(元)": None,
+"营业总收入(元)": None,
+"营业总收入同比增长(%)": None,
+"营业总收入滚动环比增长(%)": None,
+"毛利润(元)": None,
+"毛利润同比增长(%)": None,
+"毛利润滚动环比增长(%)": None,
+"归母净利润(元)": None,
+"归母净利润同比增长(%)": None,
+"归母净利润滚动环比增长(%)": None,
+"所得税/利润总额(%)": None,
+"经营现金流/营业收入(%)": None,
+"平均净资产收益率(%)": None,
+"年化净资产收益率(%)": None,
+"总资产净利率(%)": None,
+"毛利率(%)": None,
+"净利率(%)": None,
+"年化投资回报率(%)": None,
+"应收账款周转率(次)": None,
+"存货周转率(次)": None,
+"流动资产周转率(次)": None,
+"总资产周转率(次)": None,
+"流动比率(倍)": None,
+"流动负债/总负债(%)": None,
+"资产负债率(%)": None,
+"权益乘数": None,
+"产权比率": None，
+"打分": None，
+}
