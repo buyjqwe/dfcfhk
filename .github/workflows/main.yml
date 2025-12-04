@@ -3,7 +3,7 @@ name: Daily Stock Scraper
 on:
   schedule:
     # 每天 UTC 10:00 (北京时间 18:00) 运行
-    - cron: '0 */3 * * *'
+  #  - cron: '0 */3 * * *'
   workflow_dispatch: # 允许手动点击运行
 
 jobs:
